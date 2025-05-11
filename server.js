@@ -1,3 +1,7 @@
+const express = require('express');
+const app =express();
+const PORT = 3000;
+
 app.get('/', (req, res) => {
   res.send(`
     <html>
@@ -30,11 +34,15 @@ app.get('/', (req, res) => {
 
         <footer>
           <p><strong>Nombre y Apellido:</strong> Tatiana Ramirez</p>
-          <p><strong>Materia:</strong> Aplicaciones Híbridas 3</p>
-          <p><strong>Docente:</strong> Prof. [Nombre del docente]</p>
-          <p><strong>Comisión:</strong> [Tu comisión]</p>
+          <p><strong>Materia:</strong> Aplicaciones Híbridas</p>
+          <p><strong>Docente:</strong> Prof. Camila Belén Marcos Galban</p>
+          <p><strong>Comisión:</strong> dwn4av</p>
         </footer>
       </body>
     </html>
   `);
 });
+
+app.listen(PORT,()=>{
+    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+})
