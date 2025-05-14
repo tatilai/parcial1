@@ -1,7 +1,27 @@
-const express = require('express');
+/*const express = require('express');
 const app =express();
 require('./db');
 const PORT = 3000;
+*/
+import express from 'express'
+import mongoose from 'mongoose'
+import cors from 'cors'
+import dotenv from 'dotenv'
+
+import usersRoutes from './routes/users.routes.js'
+import puntosRoutes from './routes/puntos.routes.js'
+import rutasRoutes from './routes/rutas.routes.js'
+import reportesRoutes from './routes/reportes.routes.js'
+
+dotenv.config()
+
+const app = express()
+app.use(cors())
+app.use(express.json())
+
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => console.log('MongoDB conectado'))
+  .catch(err => console.log(err))
 
 app.get('/', (req, res) => {
   res.send(`
@@ -43,6 +63,15 @@ app.get('/', (req, res) => {
     </html>
   `);
 });
+
+
+// Rutas
+app.use('/api/users', usersRoutes)
+app.use('/api/puntos', puntosRoutes)
+app.use('/api/rutas', rutasRoutes)
+app.use('/api/reportes', reportesRoutes)
+
+const PORT = process.env.PORT || 3000
 
 app.listen(PORT,()=>{
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
