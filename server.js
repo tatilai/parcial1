@@ -8,7 +8,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import dotenv from 'dotenv'
 
-import usersRoutes from './routes/users.routes.js'
+//import usersRoutes from './routes/users.routes.js'
 import puntosRoutes from './routes/puntos.routes.js'
 import rutasRoutes from './routes/rutas.routes.js'
 import reportesRoutes from './routes/reportes.routes.js'
@@ -66,7 +66,7 @@ app.get('/', (req, res) => {
 
 
 // Rutas
-app.use('/api/users', usersRoutes)
+//app.use('/api/users', usersRoutes)
 app.use('/api/puntos', puntosRoutes)
 app.use('/api/rutas', rutasRoutes)
 app.use('/api/reportes', reportesRoutes)
