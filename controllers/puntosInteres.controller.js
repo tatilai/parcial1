@@ -1,7 +1,8 @@
-import * as PuntoService from '../services/punto.service.js';
+import * as PuntoService from '../services/puntosInteres.service.js';
 
 export const getAll = async (req, res) => {
   const puntos = await PuntoService.getAllPuntos();
+  // console.log('PUNTOS DESDE MONGO:', puntos);
   res.json(puntos);
 };
 

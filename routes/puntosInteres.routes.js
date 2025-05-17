@@ -1,5 +1,5 @@
 import express from 'express';
-import * as PuntoController from '../controllers/punto.controller.js';
+import * as PuntoController from '../controllers/puntosInteres.controller.js';
 
 const router = express.Router();
 
