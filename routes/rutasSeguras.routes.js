@@ -36,11 +36,12 @@ export default router;
 
 import { Router } from 'express';
 import Ruta from '../models/ruta.model.js';
+import RutaSegura from '../models/ruta.model.js';
 
 const router = Router();
 
 router.get('/', async (req, res) => {
-  const rutas = await Ruta.find();
+  const rutas = await RutaSegura.find();
   res.json(rutas);
 });
 

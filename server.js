@@ -21,7 +21,9 @@ app.use(express.json())*/
 
 import express from 'express';
 import mongoose from 'mongoose';
-import rutasRoutes from './routes/rutas.routes.js';
+//import rutasRoutes from './routes/rutas.routes.js';
+import rutasSegurasRoutes from './routes/rutasSeguras.routes.js';
+import puntosInteresesRoutes from './routes/puntosIntereses.routes.js';
 import reportesRoutes from './routes/reportes.routes.js';
 import usersRoutes from './routes/users.routes.js';
 
@@ -29,8 +31,19 @@ const app = express();
 app.use(express.json());
 
 
+// Usar las rutas
+//app.use('/api/rutas', rutasRoutes);
+app.use('/api/rutasseguras', rutasSegurasRoutes);
+app.use('/api/puntosIntereses', puntosInteresesRoutes); 
+app.use('/api/reportes', reportesRoutes);
+app.use('/api/users', usersRoutes);
+
+app.listen(3000, () => console.log('Servidor corriendo en puerto 3000'));
+
+
+
 // Conectar a Mongo
-mongoose.connect('mongodb://localhost:27017/tu_base_de_datos')
+mongoose.connect('mongodb://localhost:27017/via_segura')
   .then(() => console.log('Mongo conectado'))
   .catch(err => console.error('Error conectando a Mongo:', err));
 
@@ -62,10 +75,3 @@ app.listen(PORT,()=>{
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
 })*/
 
-
-// Usar las rutas
-app.use('/api/rutas', rutasRoutes);
-app.use('/api/reportes', reportesRoutes);
-app.use('/api/users', usersRoutes);
-
-app.listen(3000, () => console.log('Servidor corriendo en puerto 3000'));
