@@ -22,7 +22,7 @@ app.use(express.json())*/
 import express from 'express';
 import mongoose from 'mongoose';
 //import rutasRoutes from './routes/rutas.routes.js';
-import rutasSegurasRoutes from './routes/rutasSeguras.routes.js';
+import rutasSegurasRoutes from './routes/rutasseguras.routes.js';
 import puntosInteresRoutes from './routes/puntosInteres.routes.js';
 import reportesRoutes from './routes/reportes.routes.js';
 import usersRoutes from './routes/users.routes.js';
@@ -33,7 +33,7 @@ app.use(express.json());
 
 // Usar las rutas
 //app.use('/api/rutas', rutasRoutes);
-app.use('/api/rutasseguras', rutasSegurasRoutes);
+app.use('/api/rutasSeguras', rutasSegurasRoutes);
 app.use('/api/puntosInteres', puntosInteresRoutes); 
 app.use('/api/reportes', reportesRoutes);
 app.use('/api/users', usersRoutes);

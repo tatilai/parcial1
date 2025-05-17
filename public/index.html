@@ -54,7 +54,7 @@
       }
 
       async function cargarRutas() {
-        const res = await fetch("/api/rutas");
+        const res = await fetch("/api/rutasseguras");
         const rutas = await res.json();
         const ul = document.getElementById("rutas-lista");
         rutas.forEach((r) => {
