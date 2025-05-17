@@ -33,7 +33,7 @@ app.use(express.json());
 
 // Usar las rutas
 //app.use('/api/rutas', rutasRoutes);
-app.use('/api/rutasSeguras', rutasSegurasRoutes);
+app.use('/api/rutasseguras', rutasSegurasRoutes);
 app.use('/api/puntosInteres', puntosInteresRoutes); 
 app.use('/api/reportes', reportesRoutes);
 app.use('/api/users', usersRoutes);

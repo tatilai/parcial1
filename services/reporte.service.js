@@ -1,3 +1,5 @@
+
+/*
 import Reporte from '../models/reporte.model.js';
 import User from '../models/user.model.js';
 
@@ -23,4 +25,22 @@ export const updateReporte = async (id, data) => {
 
 export const deleteReporte = async (id) => {
   return await Reporte.findByIdAndDelete(id);
+};
+*/
+
+// services/reporte.service.js
+export const getAllReportes = async (filtros) => {
+  const { estado, direccion, orden = 'desc', inicio = 0, limite = 10 } = filtros;
+
+  const query = {};
+  if (estado) query.estado = estado;
+  if (direccion) query['ubicacion.direccion'] = { $regex: direccion, $options: 'i' }; // búsqueda por dirección
+
+  const ordenamiento = { fecha: orden === 'asc' ? 1 : -1 };
+
+  return await Reporte.find(query)
+    .sort(ordenamiento)
+    .skip(parseInt(inicio))
+    .limit(parseInt(limite))
+    .populate('creadoPor', 'nombre email');
 };
