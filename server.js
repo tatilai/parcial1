@@ -2,7 +2,7 @@
 const app =express();
 require('./db');
 const PORT = 3000;
-*/
+
 import express from 'express'
 import mongoose from 'mongoose'
 import cors from 'cors'
@@ -17,11 +17,26 @@ dotenv.config()
 
 const app = express()
 app.use(cors())
-app.use(express.json())
+app.use(express.json())*/
 
-mongoose.connect(process.env.MONGODB_URI)
+import express from 'express';
+import mongoose from 'mongoose';
+import rutasRoutes from './routes/rutas.routes.js';
+import reportesRoutes from './routes/reportes.routes.js';
+import usersRoutes from './routes/users.routes.js';
+
+const app = express();
+app.use(express.json());
+
+
+// Conectar a Mongo
+mongoose.connect('mongodb://localhost:27017/tu_base_de_datos')
+  .then(() => console.log('Mongo conectado'))
+  .catch(err => console.error('Error conectando a Mongo:', err));
+
+/*mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB conectado'))
-  .catch(err => console.log(err))
+  .catch(err => console.log(err))*/
 
 app.get('/', (req, res) => {
   res.send(`
@@ -66,7 +81,7 @@ app.get('/', (req, res) => {
 
 
 // Rutas
-//app.use('/api/users', usersRoutes)
+/*app.use('/api/users', usersRoutes)
 app.use('/api/puntos', puntosRoutes)
 app.use('/api/rutas', rutasRoutes)
 app.use('/api/reportes', reportesRoutes)
@@ -75,4 +90,12 @@ const PORT = process.env.PORT || 3000
 
 app.listen(PORT,()=>{
     console.log(`Servidor corriendo en http://localhost:${PORT}`);
-})
+})*/
+
+
+// Usar las rutas
+app.use('/api/rutas', rutasRoutes);
+app.use('/api/reportes', reportesRoutes);
+app.use('/api/users', usersRoutes);
+
+app.listen(3000, () => console.log('Servidor corriendo en puerto 3000'));
