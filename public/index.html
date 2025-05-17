@@ -1,38 +1,71 @@
 <html>
-      <head>
-        <title>API Vía Segura</title>
-        <!--<style>
+  <head>
+    <title>API Vía Segura</title>
+    <!--<style>
           body { font-family: Arial, sans-serif; padding: 20px; background-color: #fdfdfd; color: #333; }
           footer { margin-top: 40px; border-top: 1px solid #ccc; padding-top: 10px; }
         </style>-->
 
-        <link rel="stylesheet" href="style.css">
-      </head>
-      <body>
-        <h1>API Vía Segura</h1>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>API Vía Segura</h1>
 
-        <p>Esta API proporciona información colaborativa en tiempo real sobre:</p>
-        <ul>
-          <li><strong>Calles sin iluminación</strong> o con problemas de visibilidad.</li>
-          <li><strong>Zonas inseguras</strong> reportadas por la comunidad.</li>
-          <li><strong>Rutas alternativas</strong> más seguras para desplazarse.</li>
-          <li><strong>Alertas vecinales</strong> compartidas por la red de usuarios.</li>
-        </ul>
+    <p>Esta API proporciona información colaborativa en tiempo real sobre:</p>
+    <ul>
+          <li><strong>Calles sin iluminación</strong> o con problemas de visibilidad (Reportes).</li>
+          <li><strong>Zonas seguras</strong> recomendadas por los usuarios (Rutas Seguras).</li>
+          <li><strong>Puntos de interés</strong> como paradas seguras, locales abiertos, etc.</li>
+          <li><strong>Usuarios</strong> que interactúan con la plataforma.</li>
+    </ul>
 
-        <h3>¿Qué resolvemos?</h3>
-        <p>Combatimos la inseguridad y la desinformación en la vía pública, ayudando a las personas a desplazarse con mayor tranquilidad.</p>
+    <h2>¿Qué resolvemos?</h3>
+    <p>
+      Combatimos la inseguridad y la desinformación en la vía pública, ayudando
+      a las personas a desplazarse con mayor tranquilidad.
+    </p>
 
-        <h3>Endpoints disponibles:</h3>
-        <ul>
-          <li><a href="/api/consejos">/api/consejos</a> - Consejos y recomendaciones de seguridad.</li>
-          <li><a href="/api/reportes">/api/reportes</a> - Reportes de calles oscuras, zonas inseguras, etc.</li>
-        </ul>
+    <h2>Endpoints disponibles:</h3>
+    <ul>
+      <li>
+          <li><a href="/api/reportes">/api/reportes</a>  Reportes de calles oscuras o inseguras.</li>
+          <li><a href="/api/rutasseguras">/api/rutasseguras</a> Rutas alternativas recomendadas.</li>
+          <li><a href="/api/puntos">/api/puntos</a>  Puntos de interés útiles.</li>
+          <li><a href="/api/users">/api/users</a>  Usuarios registrados en la app.</li>
+    </ul>
 
-        <footer>
-          <p><strong>Nombre y Apellido:</strong> Tatiana Ramirez - Vanesa Nuñez</p>
-          <p><strong>Materia:</strong> Aplicaciones Híbridas</p>
-          <p><strong>Docente:</strong> Prof. Camila Belén Marcos Galban</p>
-          <p><strong>Comisión:</strong> dwn4av</p>
-        </footer>
-      </body>
-    </html>
+    <footer>
+      <p><strong>Nombre y Apellido:</strong> Tatiana Ramirez - Vanesa Nuñez</p>
+      <p><strong>Materia:</strong> Aplicaciones Híbridas</p>
+      <p><strong>Docente:</strong> Prof. Camila Belén Marcos Galban</p>
+      <p><strong>Comisión:</strong> dwn4av</p>
+    </footer>
+
+    <script>
+      async function cargarUsuarios() {
+        const res = await fetch("/api/users");
+        const usuarios = await res.json();
+        const ul = document.getElementById("usuarios-lista");
+        usuarios.forEach((u) => {
+          const li = document.createElement("li");
+          li.textContent = `Nombre: ${u.nombre} | Email: ${u.email}`;
+          ul.appendChild(li);
+        });
+      }
+
+      async function cargarRutas() {
+        const res = await fetch("/api/rutas");
+        const rutas = await res.json();
+        const ul = document.getElementById("rutas-lista");
+        rutas.forEach((r) => {
+          const li = document.createElement("li");
+          li.textContent = `Nombre: ${r.nombre} | Zona: ${r.zona}`;
+          ul.appendChild(li);
+        });
+      }
+
+      cargarUsuarios();
+      cargarRutas();
+    </script>
+  </body>
+</html>

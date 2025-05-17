@@ -34,15 +34,20 @@ mongoose.connect('mongodb://localhost:27017/tu_base_de_datos')
   .then(() => console.log('Mongo conectado'))
   .catch(err => console.error('Error conectando a Mongo:', err));
 
+  import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// Servir archivos estáticos desde /public
+app.use(express.static(path.join(__dirname, 'public')));
+
 /*mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB conectado'))
   .catch(err => console.log(err))*/
 
-app.get('/', (req, res) => {
-  res.send(`
-    
-  `);
-});
+
 
 
 // Rutas
